@@ -35,13 +35,13 @@ public class Match {
         this.date = date;
         switch (discipline) {
             case SOCCER:
-                odds = soccerOdds.getBets();
+                odds = soccerOdds.getOdds();
                 break;
             case BASKETBALL:
-                odds = basketballOdds.getBets();
+                odds = basketballOdds.getOdds();
                 break;
             case TENNIS:
-                odds = tennisOdds.getBets();
+                odds = tennisOdds.getOdds();
                 break;
         }
     }

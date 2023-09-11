@@ -15,6 +15,6 @@ public abstract class Odds {
     private float homeTeamOdds; //odd that home team/player will win
     private float awayTeamOdds; //odd that away team/player will win
 
-    public abstract List<Bet> getBets();
+    public abstract List<Bet> getOdds();
 
 }

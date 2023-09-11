@@ -11,7 +11,7 @@ public class TennisOdds extends Odds {
     private float awayTeamAcesOdds; //odd that away player will have over 8.5 service aces in a game
 
     @Override
-    public List<Bet> getBets() {
+    public List<Bet> getOdds() {
         return List.of(
                 new Bet("1", super.getHomeTeamOdds()),
                 new Bet("2", super.getAwayTeamOdds()),

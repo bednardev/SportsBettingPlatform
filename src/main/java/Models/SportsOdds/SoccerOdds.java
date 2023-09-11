@@ -11,7 +11,7 @@ public class SoccerOdds extends Odds {
     private float awayTeamCornersOdds; //odd that home team will have over 5.5 corner kicks in a game
 
     @Override
-    public List<Bet> getBets() {
+    public List<Bet> getOdds() {
         return List.of(
                 new Bet("1", super.getHomeTeamOdds()),
                 new Bet("X", drawOdds),
