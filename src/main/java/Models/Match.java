@@ -7,8 +7,10 @@ import Models.SportsOdds.TennisOdds;
 import Models.Team;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.aop.target.dynamic.BeanFactoryRefreshableTargetSource;
 
 import java.time.Instant;
+import java.util.List;
 
 import static Models.Discipline.*;
 
@@ -21,7 +23,10 @@ public class Match {
     private Team awayTeam;
     private Instant date;
     private MatchResult result;
-    private Odds odds;
+    private List<Bet> odds;
+    private BasketballOdds basketballOdds;
+    private SoccerOdds soccerOdds;
+    private TennisOdds tennisOdds;
 
     public Match(Discipline discipline, Team homeTeam, Team awayTeam, Instant date) {
         this.discipline = discipline;
@@ -30,13 +35,13 @@ public class Match {
         this.date = date;
         switch (discipline) {
             case SOCCER:
-                odds = new SoccerOdds();
+                odds = soccerOdds.getBets();
                 break;
             case BASKETBALL:
-                odds = new BasketballOdds();
+                odds = basketballOdds.getBets();
                 break;
             case TENNIS:
-                odds = new TennisOdds();
+                odds = tennisOdds.getBets();
                 break;
         }
     }
