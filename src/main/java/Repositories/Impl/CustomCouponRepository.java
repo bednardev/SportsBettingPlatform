@@ -6,10 +6,7 @@ import Repositories.CouponRepository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import static java.util.Arrays.stream;
-import static org.hibernate.internal.util.collections.ArrayHelper.forEach;
 
 public class CustomCouponRepository implements CouponRepository {
 
