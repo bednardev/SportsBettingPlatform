@@ -1,16 +1,23 @@
 package Models.SportsOdds;
 
+import Models.Bet;
 import Models.Odds;
+
+import java.util.List;
 
 public class TennisOdds extends Odds {
 
-    private float homeTeamAcesOdds; //odd that home player will have over 8 service aces in a game
-    private float awayTeamAcesOdds; //odd that away player will have over 8 service aces in a game
+    private float homeTeamAcesOdds; //odd that home player will have over 8.5 service aces in a game
+    private float awayTeamAcesOdds; //odd that away player will have over 8.5 service aces in a game
 
-    public TennisOdds(float homeTeamOdds, float awayTeamOdds, float homeTeamAcesOdds, float awayTeamAcesOdds) {
-        super(homeTeamOdds, awayTeamOdds);
-        this.homeTeamAcesOdds = homeTeamAcesOdds;
-        this.awayTeamAcesOdds = awayTeamAcesOdds;
+    @Override
+    public List<Bet> getBets() {
+        return List.of(
+                new Bet("1", super.getHomeTeamOdds()),
+                new Bet("2", super.getAwayTeamOdds()),
+                new Bet("1 over 8.5 aces", homeTeamAcesOdds),
+                new Bet("2 over 8.5 aces", awayTeamAcesOdds)
+        );
     }
 
 }
