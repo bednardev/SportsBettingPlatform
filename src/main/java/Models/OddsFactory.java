@@ -12,15 +12,10 @@ public class OddsFactory {
     private List<Bet> odds;
 
     public List<Bet> createOdds(Discipline discipline) {
-        switch (discipline) {
-            case SOCCER:
-                return soccerOdds.getOdds();
-            case BASKETBALL:
-                return basketballOdds.getOdds();
-            case TENNIS:
-                return tennisOdds.getOdds();
-            default:
-                return null;
-        }
+        return switch (discipline) {
+            case SOCCER -> soccerOdds.getOdds();
+            case BASKETBALL -> basketballOdds.getOdds();
+            case TENNIS -> tennisOdds.getOdds();
+        };
     }
 }
