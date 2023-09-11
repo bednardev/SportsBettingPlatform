@@ -1,6 +1,7 @@
 package Repositories.Impl;
 
 import Models.Bet;
+import Models.Coupon;
 import Repositories.CouponRepository;
 
 import java.util.HashMap;
@@ -10,29 +11,17 @@ import java.util.Map;
 
 public class CustomCouponRepository implements CouponRepository {
 
-    public Map<Long, Bet> coupon = new HashMap<>();
+    public Coupon coupon;
     public Long id = 0L;
 
-    public void addBet(Bet bet) {
-        coupon.put(id, bet);
+    public Coupon addBet(Bet bet) {
+        coupon.getCouponBets().put(id, bet);
         id += 1;
+        return coupon;
     }
 
-    public void removeBet(Long id) {
-        coupon.remove(id);
-    }
-
-    public float calculateCourse(Map<Long, Bet> coupon) {
-        float course = 1F;
-        float tax = 0.30F;
-        List<Float> courses = coupon
-                .values()
-                .stream()
-                .map(b -> b.getCourse())
-                .toList();
-        for (Float e : courses) {
-            course = course * e;
-        }
-        return course*tax;
+    public Coupon removeBet(Long id) {
+        coupon.getCouponBets().remove(id);
+        return coupon;
     }
 }
