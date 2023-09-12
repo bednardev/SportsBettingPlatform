@@ -14,4 +14,5 @@ import java.util.List;
     private Long id;
     private List<Bet> couponBets;
     private float totalCourse;
+    private CouponStatus couponStatus;
 }

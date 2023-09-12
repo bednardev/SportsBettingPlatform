@@ -1,22 +1,18 @@
 package Coupon;
 
-import Coupon.Bet;
-import Coupon.Coupon;
-import Coupon.CouponRepository;
-
 
  class CustomCouponRepository implements CouponRepository {
 
-    public Coupon coupon;
-    public Long id = 0L;
+    private Coupon coupon;
+    private Long id = 0L;
 
     public Coupon addBet(Bet bet) {
         coupon.getCouponBets().add(bet);
         return coupon;
     }
 
-    public Coupon removeBet(Long id) {
-        coupon.getCouponBets().remove(id);
+    public Coupon removeBet(Bet bet) {
+        coupon.getCouponBets().remove(bet);
         return coupon;
     }
 

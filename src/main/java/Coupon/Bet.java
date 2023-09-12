@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Bet {
+ public class Bet {
     private String betName;
     private float course;
 }

@@ -6,7 +6,7 @@ import Coupon.Coupon;
  interface CouponRepository {
     Coupon addBet(Bet bet);
 
-    Coupon removeBet(Long matchId);
+    Coupon removeBet(Bet bet);
 
     Coupon saveCoupon();
 
