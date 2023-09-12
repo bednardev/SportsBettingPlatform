@@ -6,7 +6,7 @@ import Match.MatchRepository;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CustomMatchRepository implements MatchRepository {
+ class CustomMatchRepository implements MatchRepository {
 
     private Map<Long, Match> matches = new HashMap<>();
     private Long id = 0L;

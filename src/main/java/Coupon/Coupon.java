@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Coupon {
+ class Coupon {
     private Long id;
     private List<Bet> couponBets;
     private float totalCourse;

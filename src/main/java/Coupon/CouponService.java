@@ -2,7 +2,7 @@ package Coupon;
 
 import Coupon.CouponRepository;
 
-public class CouponService {
+ class CouponService {
     CouponRepository couponRepository;
 
     public CouponService(CouponRepository couponRepository) {

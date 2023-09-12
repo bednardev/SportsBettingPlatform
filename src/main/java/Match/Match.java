@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Match {
+ class Match {
     private long id;
     private Discipline discipline;
     private Team homeTeam;
@@ -18,7 +18,7 @@ public class Match {
     private List<Bet> odds;
     private OddsFactory oddsFactory;
 
-    public Match(Discipline discipline, Team homeTeam, Team awayTeam, Instant date) {
+     Match(Discipline discipline, Team homeTeam, Team awayTeam, Instant date) {
         this.discipline = discipline;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;

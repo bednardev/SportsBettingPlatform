@@ -4,7 +4,7 @@ import Coupon.Bet;
 
 import java.util.List;
 
-public interface Odds {
+ interface Odds {
     public List<Bet> getOdds();
 
 }

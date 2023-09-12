@@ -5,7 +5,7 @@ import Coupon.Coupon;
 import Coupon.CouponRepository;
 
 
-public class CustomCouponRepository implements CouponRepository {
+ class CustomCouponRepository implements CouponRepository {
 
     public Coupon coupon;
     public Long id = 0L;

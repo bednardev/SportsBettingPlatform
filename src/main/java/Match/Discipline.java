@@ -1,6 +1,6 @@
 package Match;
 
-public enum Discipline {
+ enum Discipline {
     SOCCER,
     BASKETBALL,
     TENNIS

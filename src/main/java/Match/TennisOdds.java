@@ -1,11 +1,11 @@
-package Match.SportsOdds;
+package Match;
 
 import Coupon.Bet;
 import Match.Odds;
 
 import java.util.List;
 
-public class TennisOdds implements Odds {
+ class TennisOdds implements Odds {
     private float homeTeamOdd; //odd that home team/player will win
     private float awayTeamOdd; //odd that away team/player will win
 
