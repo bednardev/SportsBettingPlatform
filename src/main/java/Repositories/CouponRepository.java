@@ -11,4 +11,6 @@ public interface CouponRepository {
 
     Coupon removeBet(Long matchId);
 
+    Coupon saveCoupon();
+
 }
