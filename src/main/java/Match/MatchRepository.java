@@ -1,6 +1,6 @@
-package Repositories;
+package Match;
 
-import Models.Match;
+import Match.Match;
 
 public interface MatchRepository {
     Match addMatch(Match match);

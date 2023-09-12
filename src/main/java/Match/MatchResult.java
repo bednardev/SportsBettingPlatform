@@ -1,4 +1,4 @@
-package Models;
+package Match;
 
 public enum MatchResult {
     TO_BE_FINISHED,

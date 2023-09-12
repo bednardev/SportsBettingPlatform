@@ -1,8 +1,9 @@
-package Models;
+package Match;
 
-import Models.SportsOdds.BasketballOdds;
-import Models.SportsOdds.SoccerOdds;
-import Models.SportsOdds.TennisOdds;
+import Coupon.Bet;
+import Match.SportsOdds.BasketballOdds;
+import Match.SportsOdds.SoccerOdds;
+import Match.SportsOdds.TennisOdds;
 import java.util.List;
 public class OddsFactory {
     private BasketballOdds basketballOdds;

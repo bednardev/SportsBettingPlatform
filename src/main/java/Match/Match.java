@@ -1,8 +1,6 @@
-package Models;
+package Match;
 
-import Models.SportsOdds.BasketballOdds;
-import Models.SportsOdds.SoccerOdds;
-import Models.SportsOdds.TennisOdds;
+import Coupon.Bet;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.Instant;

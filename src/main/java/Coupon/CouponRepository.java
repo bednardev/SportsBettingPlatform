@@ -1,10 +1,7 @@
-package Repositories;
+package Coupon;
 
-import Models.Bet;
-import Models.Coupon;
-
-import java.util.List;
-import java.util.Map;
+import Coupon.Bet;
+import Coupon.Coupon;
 
 public interface CouponRepository {
     Coupon addBet(Bet bet);

@@ -1,6 +1,6 @@
-package Services;
+package Coupon;
 
-import Repositories.CouponRepository;
+import Coupon.CouponRepository;
 
 public class CouponService {
     CouponRepository couponRepository;

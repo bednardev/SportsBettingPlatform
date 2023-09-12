@@ -1,4 +1,4 @@
-package Models;
+package Coupon;
 
 
 import lombok.AllArgsConstructor;

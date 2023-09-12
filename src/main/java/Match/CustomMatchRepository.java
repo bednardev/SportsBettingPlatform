@@ -1,7 +1,7 @@
-package Repositories.Impl;
+package Match;
 
-import Models.Match;
-import Repositories.MatchRepository;
+import Match.Match;
+import Match.MatchRepository;
 
 import java.util.HashMap;
 import java.util.Map;

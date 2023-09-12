@@ -1,12 +1,8 @@
-package Repositories.Impl;
+package Coupon;
 
-import Models.Bet;
-import Models.Coupon;
-import Repositories.CouponRepository;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import Coupon.Bet;
+import Coupon.Coupon;
+import Coupon.CouponRepository;
 
 
 public class CustomCouponRepository implements CouponRepository {

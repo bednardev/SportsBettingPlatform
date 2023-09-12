@@ -1,7 +1,7 @@
-package Models.SportsOdds;
+package Match.SportsOdds;
 
-import Models.Bet;
-import Models.Odds;
+import Coupon.Bet;
+import Match.Odds;
 
 import java.util.List;
 
