@@ -1,28 +1,28 @@
-package Match;
+package com.SBS.Models;
 
-import Coupon.Bet;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.time.Instant;
 import java.util.List;
 
 @Getter
 @Setter
- class Match {
+public class Match {
     private long id;
     private Discipline discipline;
-    private Team homeTeam;
-    private Team awayTeam;
+    private String homeTeam;
+    private String awayTeam;
     private Instant date;
-    private MatchResult result;
+    private MatchResult result = MatchResult.TO_BE_FINISHED;
     private List<Bet> odds;
     private OddsFactory oddsFactory;
 
-     Match(Discipline discipline, Team homeTeam, Team awayTeam, Instant date) {
+    Match(Discipline discipline, String homeTeam, String awayTeam, Instant date) {
         this.discipline = discipline;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.date = date;
-        odds = oddsFactory.createOdds(discipline);
+  //      odds = oddsFactory.createOdds(discipline);
     }
 }

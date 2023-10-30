@@ -1,4 +1,4 @@
-package Match;
+package com.SBS.Models;
 
 public enum MatchResult {
     TO_BE_FINISHED,

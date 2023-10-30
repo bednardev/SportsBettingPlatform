@@ -1,6 +1,8 @@
-package Match;
+package com.SBS.Repositories;
 
-import Match.Match;
+import com.SBS.Models.Match;
+
+import java.util.List;
 
 public interface MatchRepository {
     Match addMatch(Match match);
@@ -8,6 +10,8 @@ public interface MatchRepository {
     void removeMatch(Long id);
 
     Match getMatchById(Long id);
+
+    List<Match> getMatches();
 
 
 }

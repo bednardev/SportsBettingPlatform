@@ -1,4 +1,4 @@
-package Coupon;
+package com.SBS.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
- class Coupon {
+public class Coupon {
     private Long id;
     private List<Bet> couponBets;
     private float totalCourse;

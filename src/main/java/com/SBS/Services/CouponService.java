@@ -1,11 +1,18 @@
-package Coupon;
+package com.SBS.Services;
 
+import com.SBS.Models.Bet;
+import com.SBS.Models.Coupon;
+import com.SBS.Repositories.CouponRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
-import static Coupon.CouponStatus.IN_PLAY;
-import static Coupon.CouponStatus.IN_PROGRESS;
+import static com.SBS.Models.CouponStatus.IN_PLAY;
+import static com.SBS.Models.CouponStatus.IN_PROGRESS;
 
-class CouponService {
+@Service
+public class CouponService {
     CouponRepository couponRepository;
 
     CouponService(CouponRepository couponRepository) {
@@ -37,5 +44,9 @@ class CouponService {
             return Optional.of(coupon);
         }
         return Optional.empty();
+    }
+
+    List<Coupon> getCoupons() {
+        return couponRepository.getCoupons();
     }
 }

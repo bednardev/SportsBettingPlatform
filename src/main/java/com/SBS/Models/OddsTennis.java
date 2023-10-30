@@ -1,11 +1,11 @@
-package Match;
+package com.SBS.Models;
 
-import Coupon.Bet;
-import Match.Odds;
+import com.SBS.Models.Bet;
+import com.SBS.Models.Odds;
 
 import java.util.List;
 
- class TennisOdds implements Odds {
+public class OddsTennis implements Odds {
     private float homeTeamOdd; //odd that home team/player will win
     private float awayTeamOdd; //odd that away team/player will win
 
