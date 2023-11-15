@@ -1,4 +1,4 @@
 package com.SBS.Utils;
 
-public class CouponInPlayException extends RuntimeException{
+public class CouponInPlayException extends RuntimeException {
 }

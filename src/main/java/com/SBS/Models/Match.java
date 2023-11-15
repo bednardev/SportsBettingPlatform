@@ -2,6 +2,7 @@ package com.SBS.Models;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.Instant;
 import java.util.List;
@@ -23,6 +24,6 @@ public class Match {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.date = date;
-  //      odds = oddsFactory.createOdds(discipline);
+//      this.odds = oddsFactory.createOdds(discipline);
     }
 }

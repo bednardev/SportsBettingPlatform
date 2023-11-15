@@ -1,6 +1,7 @@
 package com.SBS.Services;
 
 import com.SBS.Models.Match;
+import com.SBS.Models.MatchResult;
 import com.SBS.Repositories.MatchRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,12 @@ public class MatchService {
 
     public List<Match> getMatches() {
         return matchRepository.getMatches();
+    }
+
+    public Match setResult(Long id,MatchResult matchResult)
+    {
+        Match match = matchRepository.getMatchById(id);
+        match.setResult(matchResult);
+        return match;
     }
 }
