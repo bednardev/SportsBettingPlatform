@@ -1,7 +1,5 @@
 package com.SBS.Models;
 
-import com.SBS.Models.Bet;
-import com.SBS.Models.Odds;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,7 +7,7 @@ import java.util.List;
 @Component
 public class OddsTennis implements Odds {
 
-    private static final float afterRake = 0.9F;
+    private static final float afterRake = 0.95F;
     private float homeTeamOdd;
     //odd that home team/player will win
     private float awayTeamOdd;

@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 public class OddsSoccer implements Odds {
 
-    private static final float afterRake = 0.9F;
+    private static final float afterRake = 0.95F;
     private float homeTeamOdd;
     //odd that home team/player will win
     private float awayTeamOdd;
