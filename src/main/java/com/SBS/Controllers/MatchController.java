@@ -27,7 +27,7 @@ public class MatchController {
     }
 
     @PatchMapping("/{id}/{matchResult}")
-    public Match setResult(@PathVariable Long id, @PathVariable MatchResult matchResult){
+    public Match setResult(@PathVariable Long id, @PathVariable MatchResult matchResult) {
         return matchService.setResult(id, matchResult);
     }
 }

@@ -1,5 +1,6 @@
-package com.SBS.Models;
+package com.SBS.Services;
 
+import com.SBS.Models.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,17 +11,24 @@ public class OddsFactory {
     private OddsSoccer oddsSoccer;
     private OddsTennis oddsTennis;
 
-    public OddsFactory(OddsBasketball oddsBasketball, OddsSoccer oddsSoccer, OddsTennis oddsTennis){
+    public OddsFactory(OddsBasketball oddsBasketball, OddsSoccer oddsSoccer, OddsTennis oddsTennis) {
         this.oddsBasketball = oddsBasketball;
         this.oddsSoccer = oddsSoccer;
         this.oddsTennis = oddsTennis;
     }
 
-    public List<Bet> createOdds(Discipline discipline) {
-        return switch (discipline) {
+    public List<Bet> createOdds(Match match) {
+        return switch (match.getDiscipline()) {
             case SOCCER -> oddsSoccer.getOdds();
             case BASKETBALL -> oddsBasketball.getOdds();
             case TENNIS -> oddsTennis.getOdds();
+        };
+    }
+    public void setOdds(Match match) {
+        switch (match.getDiscipline()) {
+            case SOCCER -> oddsSoccer.setOdds(match);
+            case BASKETBALL -> oddsBasketball.setOdds(match);
+            case TENNIS -> oddsTennis.setOdds(match);
         };
     }
 }

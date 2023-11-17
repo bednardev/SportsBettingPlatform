@@ -5,6 +5,9 @@ import com.SBS.Models.Bet;
 import java.util.List;
 
 public interface Odds {
-    public List<Bet> getOdds();
+    List<Bet> getOdds();
+
+    void setOdds(Match match);
+
 
 }

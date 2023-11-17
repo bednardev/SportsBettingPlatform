@@ -4,7 +4,6 @@ import com.SBS.Models.*;
 import com.SBS.Repositories.MatchRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -18,7 +17,8 @@ public class MatchService {
     }
 
     public Match addMatch(Match match) {
-        Match matchToAdd = new Match(match.getDiscipline(), match.getHomeTeam(), match.getAwayTeam(), match.getDate(), oddsFactory.createOdds(match.getDiscipline()));
+        Match matchToAdd = new Match(match.getDiscipline(), match.getHomeTeam(), match.getAwayTeam(), match.getDate(), match.getHomeChancePercentage(), oddsFactory.createOdds(match));
+        oddsFactory.setOdds(matchToAdd);
         return matchRepository.addMatch(matchToAdd);
     }
 
