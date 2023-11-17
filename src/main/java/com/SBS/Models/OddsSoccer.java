@@ -33,8 +33,8 @@ public class OddsSoccer implements Odds {
 
     @Override
     public void setOdds(Match match) {
-        homeTeamOdd = afterRake * 1F / match.getHomeChancePercentage();
-        awayTeamOdd = afterRake * 1F / (0.7F - match.getHomeChancePercentage());
+        homeTeamOdd = afterRake * 1F / match.getHomeChanceCoefficient();
+        awayTeamOdd = afterRake * 1F / (0.7F - match.getHomeChanceCoefficient());
         drawOdd = afterRake * 1F / 0.3F;
     }
 }

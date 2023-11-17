@@ -17,7 +17,7 @@ public class MatchService {
     }
 
     public Match addMatch(Match match) {
-        Match matchToAdd = new Match(match.getDiscipline(), match.getHomeTeam(), match.getAwayTeam(), match.getDate(), match.getHomeChancePercentage(), oddsFactory.createOdds(match));
+        Match matchToAdd = new Match(match.getDiscipline(), match.getHomeTeam(), match.getAwayTeam(), match.getDate(), match.getHomeChanceCoefficient(), oddsFactory.createOdds(match));
         oddsFactory.setOdds(matchToAdd);
         return matchRepository.addMatch(matchToAdd);
     }
