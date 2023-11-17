@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/match")
 public class MatchController {
-    MatchService matchService;
+    private final MatchService matchService;
 
     public MatchController(MatchService matchService) {
         this.matchService = matchService;

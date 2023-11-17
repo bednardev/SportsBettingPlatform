@@ -17,13 +17,12 @@ public class Match {
     private Instant date;
     private MatchResult result = MatchResult.TO_BE_FINISHED;
     private List<Bet> odds;
-    private OddsFactory oddsFactory;
 
-    Match(Discipline discipline, String homeTeam, String awayTeam, Instant date) {
+    public Match(Discipline discipline, String homeTeam, String awayTeam, Instant date, List<Bet> odds) {
         this.discipline = discipline;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.date = date;
-//      this.odds = oddsFactory.createOdds(discipline);
+        this.odds = odds;
     }
 }

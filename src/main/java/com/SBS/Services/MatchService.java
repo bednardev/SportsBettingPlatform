@@ -1,22 +1,25 @@
 package com.SBS.Services;
 
-import com.SBS.Models.Match;
-import com.SBS.Models.MatchResult;
+import com.SBS.Models.*;
 import com.SBS.Repositories.MatchRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
 public class MatchService {
-    MatchRepository matchRepository;
+    private final MatchRepository matchRepository;
+    private final OddsFactory oddsFactory;
 
-    MatchService(MatchRepository matchRepository) {
+    MatchService(MatchRepository matchRepository, OddsFactory oddsFactory) {
         this.matchRepository = matchRepository;
+        this.oddsFactory = oddsFactory;
     }
 
     public Match addMatch(Match match) {
-        return matchRepository.addMatch(match);
+        Match matchToAdd = new Match(match.getDiscipline(), match.getHomeTeam(), match.getAwayTeam(), match.getDate(), oddsFactory.createOdds(match.getDiscipline()));
+        return matchRepository.addMatch(matchToAdd);
     }
 
     public void removeMatch(Long id) {

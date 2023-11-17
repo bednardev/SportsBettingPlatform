@@ -13,14 +13,14 @@ import static com.SBS.Models.CouponStatus.IN_PROGRESS;
 
 @Service
 public class CouponService {
-    CouponRepository couponRepository;
+    private final CouponRepository couponRepository;
 
     CouponService(CouponRepository couponRepository) {
         this.couponRepository = couponRepository;
     }
 
     Optional<Coupon> addBet(Coupon coupon, Bet bet) {
-        if (coupon.getCouponStatus() == IN_PROGRESS) {
+        if (IN_PROGRESS == coupon.getCouponStatus()) {
             couponRepository.addBet(bet);
             coupon.setTotalCourse(coupon.getTotalCourse() * bet.getCourse());
             return Optional.of(coupon);
@@ -29,7 +29,7 @@ public class CouponService {
     }
 
     Optional<Coupon> removeBet(Coupon coupon, Bet bet) {
-        if (coupon.getCouponStatus() == IN_PROGRESS) {
+        if (IN_PROGRESS == coupon.getCouponStatus()) {
             couponRepository.removeBet(bet);
             coupon.setTotalCourse(coupon.getTotalCourse() / bet.getCourse());
             return Optional.of(coupon);
@@ -38,7 +38,7 @@ public class CouponService {
     }
 
     Optional<Coupon> sendCoupon(Coupon coupon) {
-        if (coupon.getCouponStatus() == IN_PROGRESS) {
+        if (IN_PROGRESS == coupon.getCouponStatus()) {
             couponRepository.saveCoupon();
             coupon.setCouponStatus(IN_PLAY);
             return Optional.of(coupon);

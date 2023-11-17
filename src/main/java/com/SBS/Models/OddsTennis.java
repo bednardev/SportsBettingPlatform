@@ -2,9 +2,11 @@ package com.SBS.Models;
 
 import com.SBS.Models.Bet;
 import com.SBS.Models.Odds;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class OddsTennis implements Odds {
     private float homeTeamOdd = 1.90F; //odd that home team/player will win
     private float awayTeamOdd = 1.90F; //odd that away team/player will win
