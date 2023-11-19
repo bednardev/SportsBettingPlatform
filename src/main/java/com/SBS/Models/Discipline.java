@@ -1,4 +1,4 @@
-package Models;
+package com.SBS.Models;
 
 public enum Discipline {
     SOCCER,

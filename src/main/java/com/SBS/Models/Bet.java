@@ -1,4 +1,4 @@
-package Models;
+package com.SBS.Models;
 
 
 import lombok.AllArgsConstructor;

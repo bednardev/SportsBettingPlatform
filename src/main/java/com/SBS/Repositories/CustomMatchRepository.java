@@ -1,13 +1,16 @@
-package Repositories.Impl;
+package com.SBS.Repositories;
 
-import Models.Match;
-import Repositories.MatchRepository;
+import com.SBS.Models.Match;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
-public class CustomMatchRepository implements MatchRepository {
 
+@Repository
+public class CustomMatchRepository implements MatchRepository {
     private Map<Long, Match> matches = new HashMap<>();
     private Long id = 0L;
 
@@ -27,5 +30,10 @@ public class CustomMatchRepository implements MatchRepository {
     @Override
     public Match getMatchById(Long id) {
         return matches.get(id);
+    }
+
+    @Override
+    public List<Match> getMatches() {
+        return new LinkedList<>(matches.values());
     }
 }
