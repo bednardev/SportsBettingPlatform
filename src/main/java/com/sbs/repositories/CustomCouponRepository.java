@@ -1,7 +1,9 @@
 package com.sbs.repositories;
 
+import com.sbs.models.Bet;
 import com.sbs.models.Coupon;
 import com.sbs.models.CouponStatus;
+import com.sbs.models.Match;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -15,13 +17,12 @@ public class CustomCouponRepository implements CouponRepository {
 
     public Coupon addCoupon(Coupon coupon){
         coupon.setId(id);
-        coupon.setCouponStatus(CouponStatus.IN_PROGRESS);
         coupons.put(id, coupon);
         id += 1;
         return coupon;
     }
-    public Coupon addBet(Coupon coupon, String betName, Float betCourse) {
-        coupon.getCouponBets().put(betName, betCourse);
+    public Coupon addBet(Coupon coupon, Bet bet) {
+        coupon.getCouponBets().add(bet);
         return coupon;
     }
 

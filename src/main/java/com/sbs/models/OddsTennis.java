@@ -2,6 +2,7 @@ package com.sbs.models;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -17,10 +18,10 @@ public class OddsTennis implements Odds {
 //    private float awayTeamAcesOdd; //odd that away player will have over 8.5 service aces in a game
 
     @Override
-    public Map<String, Float> getOdds() {
-        return Map.of(
-               "1", homeTeamOdd,
-                "2", awayTeamOdd
+    public List<Bet> getOdds(Match match) {
+        return List.of(
+                new Bet(match.getName(), "1", homeTeamOdd),
+                new Bet(match.getName(), "2", awayTeamOdd)
 //                new Bet("1 over 8.5 aces", homeTeamAcesOdd),
 //                new Bet("2 over 8.5 aces", awayTeamAcesOdd)
         );

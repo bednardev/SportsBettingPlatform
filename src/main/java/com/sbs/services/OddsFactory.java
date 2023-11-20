@@ -3,6 +3,7 @@ package com.sbs.services;
 import com.sbs.models.*;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -17,11 +18,11 @@ public class OddsFactory {
         this.oddsTennis = oddsTennis;
     }
 
-    public Map<String,Float> createOdds(Match match) {
+    public List<Bet> createOdds(Match match) {
         return switch (match.getDiscipline()) {
-            case SOCCER -> oddsSoccer.getOdds();
-            case BASKETBALL -> oddsBasketball.getOdds();
-            case TENNIS -> oddsTennis.getOdds();
+            case SOCCER -> oddsSoccer.getOdds(match);
+            case BASKETBALL -> oddsBasketball.getOdds(match);
+            case TENNIS -> oddsTennis.getOdds(match);
         };
     }
     public void setOdds(Match match) {

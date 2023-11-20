@@ -1,6 +1,8 @@
 package com.sbs.services;
 
+import com.sbs.models.Bet;
 import com.sbs.models.Coupon;
+import com.sbs.models.CouponStatus;
 import com.sbs.repositories.CouponRepository;
 import com.sbs.repositories.MatchRepository;
 import com.sbs.utils.Exceptions.CouponInPlayException;
@@ -24,6 +26,8 @@ public class CouponService {
     }
 
     public Coupon addCoupon(Coupon coupon) {
+        coupon.setTotalCourse(1F);
+        coupon.setCouponStatus(CouponStatus.IN_PROGRESS);
         return couponRepository.addCoupon(coupon);
     }
 
@@ -34,8 +38,14 @@ public class CouponService {
     public Optional<Coupon> addBet(Long couponId, Long matchId, String betName) throws CouponInPlayException {
         Coupon coupon = couponRepository.findById(couponId);
         if (IN_PROGRESS == coupon.getCouponStatus()) {
-            Float betCourse = matchRepository.findById(matchId).getOdds().get(betName);
-            couponRepository.addBet(coupon, betName, betCourse);
+            Float betCourse = matchRepository.findById(matchId).getOdds()
+                    .stream()
+                    .filter(bet -> bet.getName().equals(betName))
+                    .map(Bet::getCourse)
+                    .findFirst()
+                    .orElse(null);
+            Bet bet = new Bet(matchRepository.findById(matchId).getName(), betName, betCourse);
+            couponRepository.addBet(coupon, bet);
             coupon.setTotalCourse(coupon.getTotalCourse() * betCourse);
             return Optional.of(coupon);
         }
@@ -45,7 +55,12 @@ public class CouponService {
     public Optional<Coupon> removeBet(Long couponId, Long matchId, String betName) throws CouponInPlayException {
         Coupon coupon = couponRepository.findById(couponId);
         if (IN_PROGRESS == coupon.getCouponStatus()) {
-            Float betCourse = matchRepository.findById(matchId).getOdds().get(betName);
+            Float betCourse = matchRepository.findById(matchId).getOdds()
+                    .stream()
+                    .filter(bet -> bet.getName().equals(betName))
+                    .map(Bet::getCourse)
+                    .findFirst()
+                    .orElse(null);
             couponRepository.removeBet(betName);
             coupon.setTotalCourse(coupon.getTotalCourse() / betCourse);
             return Optional.of(coupon);
