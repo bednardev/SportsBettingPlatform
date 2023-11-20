@@ -1,9 +1,7 @@
-package com.SBS.Repositories;
+package com.sbs.repositories;
 
-import com.SBS.Models.Coupon;
-import com.SBS.Models.CouponStatus;
-import com.SBS.Models.Match;
-import com.SBS.Repositories.CouponRepository;
+import com.sbs.models.Coupon;
+import com.sbs.models.CouponStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

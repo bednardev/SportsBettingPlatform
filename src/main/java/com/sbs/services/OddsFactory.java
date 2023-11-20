@@ -1,9 +1,8 @@
-package com.SBS.Services;
+package com.sbs.services;
 
-import com.SBS.Models.*;
+import com.sbs.models.*;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 
 @Service

@@ -1,6 +1,6 @@
-package com.SBS.Repositories;
+package com.sbs.repositories;
 
-import com.SBS.Models.Coupon;
+import com.sbs.models.Coupon;
 
 import java.util.*;
 

@@ -1,6 +1,5 @@
-package com.SBS.Models;
+package com.sbs.models;
 
-import java.util.List;
 import java.util.Map;
 
 public interface Odds {

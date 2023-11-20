@@ -1,7 +1,7 @@
-package com.SBS.Services;
+package com.sbs.services;
 
-import com.SBS.Models.*;
-import com.SBS.Repositories.MatchRepository;
+import com.sbs.models.*;
+import com.sbs.repositories.MatchRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

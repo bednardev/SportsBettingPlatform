@@ -1,16 +1,16 @@
-package com.SBS.Services;
+package com.sbs.services;
 
-import com.SBS.Models.Coupon;
-import com.SBS.Repositories.CouponRepository;
-import com.SBS.Repositories.MatchRepository;
-import com.SBS.Utils.Exceptions.CouponInPlayException;
+import com.sbs.models.Coupon;
+import com.sbs.repositories.CouponRepository;
+import com.sbs.repositories.MatchRepository;
+import com.sbs.utils.Exceptions.CouponInPlayException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-import static com.SBS.Models.CouponStatus.IN_PLAY;
-import static com.SBS.Models.CouponStatus.IN_PROGRESS;
+import static com.sbs.models.CouponStatus.IN_PLAY;
+import static com.sbs.models.CouponStatus.IN_PROGRESS;
 
 @Service
 public class CouponService {

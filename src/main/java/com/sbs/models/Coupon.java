@@ -1,11 +1,10 @@
-package com.SBS.Models;
+package com.sbs.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 

@@ -1,10 +1,9 @@
-package com.SBS.Models;
+package com.sbs.models;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
-import java.util.List;
 import java.util.Map;
 
 @Getter

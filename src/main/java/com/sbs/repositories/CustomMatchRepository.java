@@ -1,6 +1,6 @@
-package com.SBS.Repositories;
+package com.sbs.repositories;
 
-import com.SBS.Models.Match;
+import com.sbs.models.Match;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;

@@ -1,8 +1,8 @@
-package com.SBS.Controllers;
+package com.sbs.controllers;
 
-import com.SBS.Models.Match;
-import com.SBS.Models.MatchResult;
-import com.SBS.Services.MatchService;
+import com.sbs.models.Match;
+import com.sbs.models.MatchResult;
+import com.sbs.services.MatchService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
