@@ -28,7 +28,7 @@ public class CustomMatchRepository implements MatchRepository {
     }
 
     @Override
-    public Match getMatchById(Long id) {
+    public Match findById(Long id) {
         return matches.get(id);
     }
 

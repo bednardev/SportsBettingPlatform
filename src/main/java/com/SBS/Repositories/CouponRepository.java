@@ -1,19 +1,20 @@
 package com.SBS.Repositories;
 
-import com.SBS.Models.Bet;
 import com.SBS.Models.Coupon;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public interface CouponRepository {
-    Coupon addBet(Bet bet);
+    Coupon addBet(Coupon coupon, String betName, Float betCourse);
 
-    Coupon removeBet(Bet bet);
+    Coupon removeBet(String betName);
 
-    Coupon saveCoupon();
+    Coupon addCoupon(Coupon coupon);
+
+    Coupon sendCoupon(Coupon coupon);
 
     List<Coupon> getCoupons();
+
+    Coupon findById(Long id);
 
 }

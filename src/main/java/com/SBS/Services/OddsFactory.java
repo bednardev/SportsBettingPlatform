@@ -4,6 +4,7 @@ import com.SBS.Models.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OddsFactory {
@@ -17,7 +18,7 @@ public class OddsFactory {
         this.oddsTennis = oddsTennis;
     }
 
-    public List<Bet> createOdds(Match match) {
+    public Map<String,Float> createOdds(Match match) {
         return switch (match.getDiscipline()) {
             case SOCCER -> oddsSoccer.getOdds();
             case BASKETBALL -> oddsBasketball.getOdds();

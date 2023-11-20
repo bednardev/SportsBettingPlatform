@@ -1,11 +1,10 @@
 package com.SBS.Models;
 
-import com.SBS.Models.Bet;
-
 import java.util.List;
+import java.util.Map;
 
 public interface Odds {
-    List<Bet> getOdds();
+    Map<String,Float> getOdds();
 
     void setOdds(Match match);
 

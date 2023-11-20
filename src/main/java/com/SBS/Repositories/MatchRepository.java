@@ -9,7 +9,7 @@ public interface MatchRepository {
 
     void removeMatch(Long id);
 
-    Match getMatchById(Long id);
+    Match findById(Long id);
 
     List<Match> getMatches();
 

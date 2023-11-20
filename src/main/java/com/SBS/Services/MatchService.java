@@ -11,7 +11,7 @@ public class MatchService {
     private final MatchRepository matchRepository;
     private final OddsFactory oddsFactory;
 
-    MatchService(MatchRepository matchRepository, OddsFactory oddsFactory) {
+    public MatchService(MatchRepository matchRepository, OddsFactory oddsFactory) {
         this.matchRepository = matchRepository;
         this.oddsFactory = oddsFactory;
     }
@@ -26,8 +26,8 @@ public class MatchService {
         matchRepository.removeMatch(id);
     }
 
-    public Match getMatchById(Long id) {
-        return matchRepository.getMatchById(id);
+    public Match findById(Long id) {
+        return matchRepository.findById(id);
     }
 
     public List<Match> getMatches() {
@@ -36,7 +36,7 @@ public class MatchService {
 
     public Match setResult(Long id,MatchResult matchResult)
     {
-        Match match = matchRepository.getMatchById(id);
+        Match match = matchRepository.findById(id);
         match.setResult(matchResult);
         return match;
     }
