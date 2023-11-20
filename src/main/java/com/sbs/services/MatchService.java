@@ -2,7 +2,9 @@ package com.sbs.services;
 
 import com.sbs.models.*;
 import com.sbs.repositories.MatchRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
@@ -27,7 +29,8 @@ public class MatchService {
     }
 
     public Match findById(Long id) {
-        return matchRepository.findById(id);
+        return matchRepository.findById(id)
+                .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
     }
 
     public List<Match> getMatches() {
@@ -36,7 +39,8 @@ public class MatchService {
 
     public Match setResult(Long id,MatchResult matchResult)
     {
-        Match match = matchRepository.findById(id);
+        Match match = matchRepository.findById(id)
+                .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
         match.setResult(matchResult);
         return match;
     }

@@ -3,10 +3,7 @@ package com.sbs.repositories;
 import com.sbs.models.Match;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Repository
@@ -28,8 +25,8 @@ public class CustomMatchRepository implements MatchRepository {
     }
 
     @Override
-    public Match findById(Long id) {
-        return matches.get(id);
+    public Optional<Match> findById(Long id) {
+        return Optional.of(matches.get(id));
     }
 
     @Override

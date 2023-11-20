@@ -25,6 +25,10 @@ public class CouponController {
     public List<Coupon> getCoupons() {
         return couponService.getCoupons();
     }
+    @GetMapping("/{id}")
+        public Optional<Coupon> findById(@PathVariable Long id){
+        return couponService.findById(id);
+    }
 
     @PatchMapping(value = "/{couponId}/{matchId}/{betName}", params = "add")
     public Optional<Coupon> addBet(@PathVariable Long couponId, @PathVariable Long matchId, @PathVariable String betName) {

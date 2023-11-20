@@ -38,8 +38,8 @@ public class CustomCouponRepository implements CouponRepository {
     }
 
     @Override
-    public Coupon findById(Long id) {
-        return coupons.get(id);
+    public Optional<Coupon> findById(Long id) {
+        return Optional.of(coupons.get(id));
     }
 
     @Override

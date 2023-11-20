@@ -17,6 +17,6 @@ public interface CouponRepository {
 
     List<Coupon> getCoupons();
 
-    Coupon findById(Long id);
+    Optional<Coupon> findById(Long id);
 
 }
