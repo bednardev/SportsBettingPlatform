@@ -2,9 +2,7 @@ package com.sbs.repositories;
 
 import com.sbs.models.Bet;
 import com.sbs.models.Coupon;
-import com.sbs.models.CouponStatus;
-import com.sbs.models.Match;
-import org.springframework.stereotype.Repository;
+aimport org.springframework.stereotype.Repository;
 
 import java.util.*;
 
@@ -12,7 +10,6 @@ import java.util.*;
 public class CustomCouponRepository implements CouponRepository {
 
     private HashMap<Long, Coupon> coupons = new HashMap<>();
-    private Coupon coupon;
     private Long id = 0L;
 
     public Coupon addCoupon(Coupon coupon){

@@ -23,6 +23,11 @@ public class MatchController {
         return matchService.getMatches();
     }
 
+    @GetMapping("/{id}")
+    public Match findById(@PathVariable Long id){
+        return matchService.findById(id);
+    }
+
     @PostMapping
     public Match addMatch(@RequestBody @Valid Match match) {
         return matchService.addMatch(match);
@@ -31,5 +36,10 @@ public class MatchController {
     @PatchMapping("/{id}/{matchResult}")
     public Match setResult(@PathVariable Long id, @PathVariable MatchResult matchResult) {
         return matchService.setResult(id, matchResult);
+    }
+
+    @DeleteMapping("/{id}")
+    public void removeMatch(@PathVariable Long id){
+         matchService.removeMatch(id);
     }
 }
