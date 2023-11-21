@@ -1,21 +1,27 @@
 package com.sbs.models;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Map;
 
 @Getter
 @Setter
 public class Match {
     private Long id;
+    @NotNull
     private Discipline discipline;
+    @NotEmpty
     private String homeTeam;
+    @NotEmpty
     private String awayTeam;
     private String name;
+    @NotNull
     private Instant date;
+    @NotNull
     private Float homeChanceCoefficient;
     /*a chance for winning for home Team, should be provided after game analysis. Away team chance is calculated
      then based on provided home chance (for soccer, a draw chance has fixed value 0.30)*/

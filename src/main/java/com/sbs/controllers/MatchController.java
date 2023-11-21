@@ -4,6 +4,7 @@ import com.sbs.models.Match;
 import com.sbs.models.MatchDto;
 import com.sbs.models.MatchResult;
 import com.sbs.services.MatchService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class MatchController {
     }
 
     @PostMapping
-    public Match addMatch(@RequestBody Match match) {
+    public Match addMatch(@RequestBody @Valid Match match) {
         return matchService.addMatch(match);
     }
 
