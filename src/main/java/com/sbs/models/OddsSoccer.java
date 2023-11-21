@@ -9,7 +9,7 @@ import java.util.Map;
 public class OddsSoccer implements Odds {
 
     private static final float afterRake = 0.95F;
-    private float homeTeamOdd;
+            private float homeTeamOdd;
     //odd that home team/player will win
     private float awayTeamOdd;
     //odd that away team/player will win, 0.3 chance is always reserved for a draw
