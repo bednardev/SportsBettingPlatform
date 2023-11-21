@@ -1,6 +1,7 @@
 package com.sbs.controllers;
 
 import com.sbs.models.Match;
+import com.sbs.models.MatchDto;
 import com.sbs.models.MatchResult;
 import com.sbs.services.MatchService;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class MatchController {
     }
 
     @GetMapping
-    public List<Match> getMatches() {
+    public List<MatchDto> getMatches() {
         return matchService.getMatches();
     }
 

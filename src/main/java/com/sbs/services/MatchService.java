@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MatchService {
@@ -33,8 +34,11 @@ public class MatchService {
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
     }
 
-    public List<Match> getMatches() {
-        return matchRepository.getMatches();
+    public List<MatchDto> getMatches() {
+        return matchRepository.getMatches()
+                .stream()
+                .map(match -> new MatchDto(match.getId(), match.getDiscipline(), match.getName(), match.getDate(), match.getResult(), match.getOdds()))
+                .collect(Collectors.toList());
     }
 
     public Match setResult(Long id,MatchResult matchResult)

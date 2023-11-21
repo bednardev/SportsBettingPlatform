@@ -10,7 +10,7 @@ import java.util.Map;
 @Getter
 @Setter
 public class Match {
-    private long id;
+    private Long id;
     private Discipline discipline;
     private String homeTeam;
     private String awayTeam;
