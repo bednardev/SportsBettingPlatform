@@ -9,7 +9,7 @@ import java.util.*;
 public interface CouponRepository {
     Coupon addBet(Coupon coupon, Bet bet);
 
-    Coupon removeBet(String betName);
+    Coupon removeBet(Coupon coupon, int betId);
 
     Coupon addCoupon(Coupon coupon);
 

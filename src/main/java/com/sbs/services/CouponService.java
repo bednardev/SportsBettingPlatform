@@ -41,9 +41,9 @@ public class CouponService {
     public Optional<Coupon> addBet(Long couponId, Long matchId, String betName) throws CouponInPlayException {
         Coupon coupon = couponRepository.findById(couponId)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
-        if (IN_PROGRESS == coupon.getCouponStatus()) {
-            Match match = matchRepository.findById(matchId)
-                    .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        Match match = matchRepository.findById(matchId)
+                .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        if (IN_PROGRESS == coupon.getCouponStatus()) {;
             Float betCourse = match.getOdds()
                     .stream()
                     .filter(bet -> bet.getName().equals(betName))
@@ -60,19 +60,14 @@ public class CouponService {
         throw new CouponInPlayException();
     }
 
-    public Optional<Coupon> removeBet(Long couponId, Long matchId, String betName) throws CouponInPlayException {
+    public Optional<Coupon> removeBet(Long couponId, int betId) throws CouponInPlayException {
         Coupon coupon = couponRepository.findById(couponId)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
         if (IN_PROGRESS == coupon.getCouponStatus()) {
-            Float betCourse = matchRepository.findById(matchId)
-                    .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND))
-                    .getOdds()
-                    .stream()
-                    .filter(bet -> bet.getName().equals(betName))
-                    .map(Bet::getCourse)
-                    .findFirst()
-                    .orElse(null);
-            couponRepository.removeBet(betName);
+            Float betCourse = coupon.getCouponBets()
+                    .get(betId)
+                    .getCourse();
+            couponRepository.removeBet(coupon, betId);
             coupon.setTotalCourse(coupon.getTotalCourse() / betCourse);
             return Optional.of(coupon);
         }

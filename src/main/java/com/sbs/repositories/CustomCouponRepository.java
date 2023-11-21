@@ -26,8 +26,8 @@ public class CustomCouponRepository implements CouponRepository {
         return coupon;
     }
 
-    public Coupon removeBet(String betName) {
-        coupon.getCouponBets().remove(betName);
+    public Coupon removeBet(Coupon coupon, int betId) {
+        coupon.getCouponBets().remove(betId);
         return coupon;
     }
 
