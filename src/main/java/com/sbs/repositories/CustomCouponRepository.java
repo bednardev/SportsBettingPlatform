@@ -2,7 +2,7 @@ package com.sbs.repositories;
 
 import com.sbs.models.Bet;
 import com.sbs.models.Coupon;
-aimport org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
