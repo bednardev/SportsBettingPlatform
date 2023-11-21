@@ -19,12 +19,14 @@ public class ControllerExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(Map.of("Error", "status 400, Coupon in play cannot be edited"));
     }
+
     @ExceptionHandler
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(Map.of("status", "400", "errors", prepareMapFromValidationErrors(ex)));
     }
+
     private String prepareMapFromValidationErrors(MethodArgumentNotValidException ex) {
         Map<String, String> errorMap = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach(error -> {

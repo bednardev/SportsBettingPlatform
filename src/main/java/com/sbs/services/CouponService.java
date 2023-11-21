@@ -37,18 +37,13 @@ public class CouponService {
     public List<Coupon> getCoupons() {
         return couponRepository.getCoupons();
     }
-    /* public class Bet {
-    private String matchName;
-    private String name;
-    private Float course;
-}*/
 
     public Optional<Coupon> addBet(Long couponId, Long matchId, String betName) throws CouponInPlayException {
         Coupon coupon = couponRepository.findById(couponId)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
         Match match = matchRepository.findById(matchId)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
-        if (IN_PROGRESS == coupon.getCouponStatus()) {;
+        if (IN_PROGRESS == coupon.getCouponStatus()) {
             Bet bet = match.getOdds()
                     .stream()
                     .filter(b -> b.getName().equals(betName))
@@ -86,7 +81,7 @@ public class CouponService {
         throw new CouponInPlayException();
     }
 
-    public Optional<Coupon> findById(Long id){
+    public Optional<Coupon> findById(Long id) {
         return couponRepository.findById(id);
     }
 }

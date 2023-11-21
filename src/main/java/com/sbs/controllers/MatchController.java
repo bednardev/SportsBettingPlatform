@@ -24,7 +24,7 @@ public class MatchController {
     }
 
     @GetMapping("/{id}")
-    public Match findById(@PathVariable Long id){
+    public Match findById(@PathVariable Long id) {
         return matchService.findById(id);
     }
 
@@ -39,7 +39,7 @@ public class MatchController {
     }
 
     @DeleteMapping("/{id}")
-    public void removeMatch(@PathVariable Long id){
-         matchService.removeMatch(id);
+    public void removeMatch(@PathVariable Long id) {
+        matchService.removeMatch(id);
     }
 }

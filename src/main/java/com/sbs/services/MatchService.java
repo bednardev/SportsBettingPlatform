@@ -41,8 +41,7 @@ public class MatchService {
                 .collect(Collectors.toList());
     }
 
-    public Match setResult(Long id,MatchResult matchResult)
-    {
+    public Match setResult(Long id, MatchResult matchResult) {
         Match match = matchRepository.findById(id)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
         match.setResult(matchResult);

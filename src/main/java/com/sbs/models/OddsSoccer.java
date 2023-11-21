@@ -3,13 +3,12 @@ package com.sbs.models;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class OddsSoccer implements Odds {
 
     private static final float afterRake = 0.95F;
-            private float homeTeamOdd;
+    private float homeTeamOdd;
     //odd that home team/player will win
     private float awayTeamOdd;
     //odd that away team/player will win, 0.3 chance is always reserved for a draw
@@ -32,8 +31,8 @@ public class OddsSoccer implements Odds {
 
     @Override
     public void setOdds(Match match) {
-        homeTeamOdd = afterRake * 1F / match.getHomeChanceCoefficient();
-        awayTeamOdd = afterRake * 1F / (0.7F - match.getHomeChanceCoefficient());
-        drawOdd = afterRake * 1F / 0.3F;
+        homeTeamOdd = afterRake / match.getHomeChanceCoefficient();
+        awayTeamOdd = afterRake / (0.7F - match.getHomeChanceCoefficient());
+        drawOdd = afterRake / 0.3F;
     }
 }

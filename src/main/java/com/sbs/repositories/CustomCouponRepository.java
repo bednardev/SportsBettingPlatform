@@ -12,12 +12,13 @@ public class CustomCouponRepository implements CouponRepository {
     private HashMap<Long, Coupon> coupons = new HashMap<>();
     private Long id = 0L;
 
-    public Coupon addCoupon(Coupon coupon){
+    public Coupon addCoupon(Coupon coupon) {
         coupon.setId(id);
         coupons.put(id, coupon);
         id += 1;
         return coupon;
     }
+
     public Coupon addBet(Coupon coupon, Bet bet) {
         coupon.getCouponBets().add(bet);
         return coupon;

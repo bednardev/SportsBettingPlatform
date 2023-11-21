@@ -3,7 +3,6 @@ package com.sbs.models;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class OddsTennis implements Odds {
@@ -29,8 +28,8 @@ public class OddsTennis implements Odds {
 
     @Override
     public void setOdds(Match match) {
-        homeTeamOdd = afterRake * 1F / match.getHomeChanceCoefficient();
-        awayTeamOdd = afterRake * 1F / (1 - match.getHomeChanceCoefficient());
+        homeTeamOdd = afterRake / match.getHomeChanceCoefficient();
+        awayTeamOdd = afterRake / (1 - match.getHomeChanceCoefficient());
     }
 
 }

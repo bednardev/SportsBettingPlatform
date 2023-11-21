@@ -25,8 +25,9 @@ public class CouponController {
     public List<Coupon> getCoupons() {
         return couponService.getCoupons();
     }
+
     @GetMapping("/{id}")
-        public Optional<Coupon> findById(@PathVariable Long id){
+    public Optional<Coupon> findById(@PathVariable Long id) {
         return couponService.findById(id);
     }
 
