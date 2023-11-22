@@ -46,10 +46,13 @@ public class MatchService {
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
         match.setResult(matchResult);
         match.getOdds()
-                .stream()
-                .filter(t -> t.getName().equals(matchResult.getScore()))
-                .findFirst()
-                .map(bet -> BetStatus.WON);
+                .forEach(bet -> {
+                    if (bet.getName().equals(matchResult.getScore())) {
+                        bet.setBetStatus(BetStatus.WON);
+                    } else {
+                        bet.setBetStatus(BetStatus.LOST);
+                    }
+                });
         return match;
     }
 }
