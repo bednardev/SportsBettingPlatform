@@ -13,5 +13,7 @@ public class Coupon {
     private Long id;
     private List<Bet> couponBets = new LinkedList<>();
     private Float totalCourse;
+    private Float stake;
+    private Float winning;
     private CouponStatus couponStatus;
 }

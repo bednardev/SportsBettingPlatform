@@ -33,7 +33,7 @@ public class MatchController {
         return matchService.addMatch(match);
     }
 
-    @PatchMapping("/{id}/{matchResult}")
+    @PatchMapping(value = "/{id}/{matchResult}", params = "settle")
     public Match setResult(@PathVariable Long id, @PathVariable MatchResult matchResult) {
         return matchService.setResult(id, matchResult);
     }

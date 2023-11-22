@@ -41,6 +41,11 @@ public class CouponController {
         return couponService.removeBet(couponId, betId);
     }
 
+    @PatchMapping(value = {"/{id}/{stake}"}, params = "stake")
+    public Optional<Coupon> setStake(@PathVariable Float stake, @PathVariable Long id) {
+        return couponService.setStake(stake, id);
+    }
+
     @PatchMapping(value = "/{id}", params = "send")
     public Optional<Coupon> sendCoupon(@PathVariable Long id) {
         return couponService.sendCoupon(id);

@@ -45,6 +45,11 @@ public class MatchService {
         Match match = matchRepository.findById(id)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
         match.setResult(matchResult);
+        match.getOdds()
+                .stream()
+                .filter(t -> t.getName().equals(matchResult.getScore()))
+                .findFirst()
+                .map(bet -> BetStatus.WON);
         return match;
     }
 }

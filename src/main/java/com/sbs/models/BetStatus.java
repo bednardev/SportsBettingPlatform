@@ -1,8 +1,7 @@
 package com.sbs.models;
 
-public enum CouponStatus {
+public enum BetStatus {
     IN_PROGRESS,
-    IN_PLAY,
     WON,
-    LOST;
+    LOST
 }

@@ -18,8 +18,8 @@ public class OddsBasketball implements Odds {
     @Override
     public List<Bet> getOdds(Match match) {
         return List.of(
-                new Bet(match.getName(), "1", homeTeamOdd),
-                new Bet(match.getName(), "2", awayTeamOdd)
+                new Bet(match.getName(), "1", homeTeamOdd, BetStatus.IN_PROGRESS),
+                new Bet(match.getName(), "2", awayTeamOdd, BetStatus.IN_PROGRESS)
                 //               new Bet("1 over 80.5 points", homeTeamPointsOdd),
                 //               new Bet("2 over 80.5 points", awayTeamPointsOdd)
         );

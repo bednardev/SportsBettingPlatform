@@ -12,4 +12,5 @@ public class Bet {
     private String matchName;
     private String name;
     private Float course;
+    private BetStatus betStatus;
 }

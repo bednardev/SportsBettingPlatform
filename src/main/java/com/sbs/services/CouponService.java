@@ -70,6 +70,16 @@ public class CouponService {
         }
         throw new CouponInPlayException();
     }
+    public Optional<Coupon> setStake(Float stake, Long id) throws CouponInPlayException {
+        Coupon coupon = couponRepository.findById(id)
+                .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        if (IN_PROGRESS == coupon.getCouponStatus()) {
+            coupon.setStake(stake);
+            coupon.setWinning(stake * coupon.getTotalCourse());
+            return Optional.of(coupon);
+        }
+        throw new CouponInPlayException();
+    }
 
     public Optional<Coupon> sendCoupon(Long id) throws CouponInPlayException {
         Coupon coupon = couponRepository.findById(id)
@@ -81,6 +91,7 @@ public class CouponService {
         }
         throw new CouponInPlayException();
     }
+
 
     public Optional<Coupon> findById(Long id) {
         return couponRepository.findById(id);
