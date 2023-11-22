@@ -6,9 +6,9 @@ import com.sbs.models.Coupon;
 import java.util.*;
 
 public interface CouponRepository {
-    Coupon addBet(Coupon coupon, Bet bet);
+    Coupon addBet(Coupon coupon, Bet bet, Long matchId);
 
-    Coupon removeBet(Coupon coupon, int betId);
+    Coupon removeBet(Coupon coupon, Long matchId);
 
     Coupon addCoupon(Coupon coupon);
 

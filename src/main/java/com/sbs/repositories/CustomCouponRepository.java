@@ -19,13 +19,13 @@ public class CustomCouponRepository implements CouponRepository {
         return coupon;
     }
 
-    public Coupon addBet(Coupon coupon, Bet bet) {
-        coupon.getCouponBets().add(bet);
+    public Coupon addBet(Coupon coupon, Bet bet, Long matchId) {
+        coupon.getCouponBets().put(matchId, bet);
         return coupon;
     }
 
-    public Coupon removeBet(Coupon coupon, int betId) {
-        coupon.getCouponBets().remove(betId);
+    public Coupon removeBet(Coupon coupon, Long matchId) {
+        coupon.getCouponBets().remove(matchId);
         return coupon;
     }
 

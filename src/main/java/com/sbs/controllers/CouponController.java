@@ -36,9 +36,9 @@ public class CouponController {
         return couponService.addBet(couponId, matchId, betName);
     }
 
-    @PatchMapping(value = "/{couponId}/{betId}", params = "remove")
-    public Optional<Coupon> removeBet(@PathVariable Long couponId, @PathVariable int betId) {
-        return couponService.removeBet(couponId, betId);
+    @PatchMapping(value = "/{couponId}/{matchId}", params = "remove")
+    public Optional<Coupon> removeBet(@PathVariable Long couponId, @PathVariable Long matchId) {
+        return couponService.removeBet(couponId, matchId);
     }
 
     @PatchMapping(value = {"/{id}/{stake}"}, params = "stake")

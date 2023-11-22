@@ -11,7 +11,7 @@ import java.util.*;
 public class Coupon {
     public Coupon(){}
     private Long id;
-    private List<Bet> couponBets = new LinkedList<>();
+    private Map<Long, Bet> couponBets = new LinkedHashMap<>();
     private Float totalCourse;
     private Float stake;
     private Float winning;

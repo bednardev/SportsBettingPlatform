@@ -50,21 +50,21 @@ public class CouponService {
                     .filter(b -> b.getName().equals(betName))
                     .findFirst()
                     .orElseThrow((() -> new HttpClientErrorException(HttpStatus.NOT_FOUND)));
-            couponRepository.addBet(coupon, bet);
+            couponRepository.addBet(coupon, bet, matchId);
             coupon.setTotalCourse(coupon.getTotalCourse() * bet.getCourse());
             return Optional.of(coupon);
         }
         throw new CouponInPlayException();
     }
 
-    public Optional<Coupon> removeBet(Long couponId, int betId) throws CouponInPlayException {
+    public Optional<Coupon> removeBet(Long couponId, Long matchId) throws CouponInPlayException {
         Coupon coupon = couponRepository.findById(couponId)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
         if (IN_PROGRESS == coupon.getCouponStatus()) {
             Float betCourse = coupon.getCouponBets()
-                    .get(betId)
+                    .get(matchId)
                     .getCourse();
-            couponRepository.removeBet(coupon, betId);
+            couponRepository.removeBet(coupon, matchId);
             coupon.setTotalCourse(coupon.getTotalCourse() / betCourse);
             return Optional.of(coupon);
         }
