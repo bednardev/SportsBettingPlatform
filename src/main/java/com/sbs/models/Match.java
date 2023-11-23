@@ -35,7 +35,7 @@ public class Match {
         this.name = homeTeam + " - " + awayTeam;
         this.date = date;
         this.homeChanceCoefficient = homeChanceCoefficient;
-        this.result = MatchResult.TO_BE_FINISHED;
+        this.result = MatchResult.NOT_STARTED;
         this.odds = odds;
     }
 }

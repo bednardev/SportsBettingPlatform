@@ -50,4 +50,9 @@ public class CouponController {
     public Optional<Coupon> sendCoupon(@PathVariable Long id) {
         return couponService.sendCoupon(id);
     }
+
+    @PatchMapping(value = "/{id}", params = "settle")
+    public void settleCoupon(@PathVariable Long id){
+         couponService.settleCoupon(id);
+    }
 }

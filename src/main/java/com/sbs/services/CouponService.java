@@ -1,9 +1,6 @@
 package com.sbs.services;
 
-import com.sbs.models.Bet;
-import com.sbs.models.Coupon;
-import com.sbs.models.CouponStatus;
-import com.sbs.models.Match;
+import com.sbs.models.*;
 import com.sbs.repositories.CouponRepository;
 import com.sbs.repositories.MatchRepository;
 import com.sbs.utils.Exceptions.CouponInPlayException;
@@ -14,8 +11,8 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.util.List;
 import java.util.Optional;
 
-import static com.sbs.models.CouponStatus.IN_PLAY;
-import static com.sbs.models.CouponStatus.IN_PROGRESS;
+import static com.sbs.models.CouponStatus.*;
+import static com.sbs.models.MatchResult.NOT_STARTED;
 
 @Service
 public class CouponService {
@@ -44,7 +41,7 @@ public class CouponService {
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
         Match match = matchRepository.findById(matchId)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
-        if (IN_PROGRESS == coupon.getCouponStatus()) {
+        if (IN_PROGRESS == coupon.getCouponStatus() && NOT_STARTED == match.getResult()) {
             Bet bet = match.getOdds()
                     .stream()
                     .filter(b -> b.getName().equals(betName))
@@ -70,6 +67,7 @@ public class CouponService {
         }
         throw new CouponInPlayException();
     }
+
     public Optional<Coupon> setStake(Float stake, Long id) throws CouponInPlayException {
         Coupon coupon = couponRepository.findById(id)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
@@ -92,6 +90,21 @@ public class CouponService {
         throw new CouponInPlayException();
     }
 
+    public void settleCoupon(Long id) {
+        Coupon coupon = couponRepository.findById(id)
+                .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        if (IN_PLAY == coupon.getCouponStatus()) {
+            if (coupon.getCouponBets()
+                    .values()
+                    .stream()
+                    .allMatch(bet -> bet.getBetStatus().equals(BetStatus.WON))) {
+                coupon.setCouponStatus(WON);
+            }
+            else {
+                coupon.setCouponStatus(LOST);
+            }
+        }
+    }
 
     public Optional<Coupon> findById(Long id) {
         return couponRepository.findById(id);
