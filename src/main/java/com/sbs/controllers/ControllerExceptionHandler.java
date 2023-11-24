@@ -1,14 +1,12 @@
 package com.sbs.controllers;
 
-import com.sbs.utils.Exceptions.CouponInPlayException;
+import com.sbs.utils.Exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.client.HttpClientErrorException;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,13 +18,34 @@ public class ControllerExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(Map.of("Error", "status 400, Coupon in play cannot be edited"));
     }
-    @ExceptionHandler
-    public ResponseEntity<Map<String, String>> handleHttpClientErrorException(HttpClientErrorException x) {
+
+    @ExceptionHandler(CouponNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleCouponNotFoundException(CouponNotFoundException e) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body(Map.of("Error", "status 404, resource not found"));
+                .body(Map.of("Error", "status 404, coupon not found"));
     }
 
+    @ExceptionHandler(MatchNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleMatchNotFoundException(MatchNotFoundException e) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Map.of("Error", "status 404, match not found"));
+    }
+
+    @ExceptionHandler(BetNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleBetNotFoundException(BetNotFoundException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("Error", "status 404, bet not found"));
+    }
+
+    @ExceptionHandler(MatchInProgressException.class)
+    public ResponseEntity<Map<String, String>> handleMatchInProgressException(MatchInProgressException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("Error", "status 404, the coupon does not contain only not started games"));
+    }
 
     @ExceptionHandler
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {

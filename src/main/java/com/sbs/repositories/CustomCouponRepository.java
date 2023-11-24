@@ -37,7 +37,7 @@ public class CustomCouponRepository implements CouponRepository {
 
     @Override
     public Optional<Coupon> findById(Long id) {
-        return Optional.of(coupons.get(id));
+        return coupons.containsKey(id) ? Optional.of(coupons.get(id)) : Optional.empty();
     }
 
     @Override

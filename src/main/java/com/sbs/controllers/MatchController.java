@@ -4,6 +4,7 @@ import com.sbs.models.Match;
 import com.sbs.models.MatchDto;
 import com.sbs.models.MatchResult;
 import com.sbs.services.MatchService;
+import com.sbs.utils.Exceptions.MatchNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,8 @@ public class MatchController {
 
     @GetMapping("/{id}")
     public Match findById(@PathVariable Long id) {
-        return matchService.findById(id);
+        return matchService.findById(id)
+                .orElseThrow(() -> new MatchNotFoundException());
     }
 
     @PostMapping

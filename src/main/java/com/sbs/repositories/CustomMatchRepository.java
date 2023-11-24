@@ -26,7 +26,7 @@ public class CustomMatchRepository implements MatchRepository {
 
     @Override
     public Optional<Match> findById(Long id) {
-        return Optional.of(matches.get(id));
+        return matches.containsKey(id) ? Optional.of(matches.get(id)) : Optional.empty();
     }
 
     @Override

@@ -2,11 +2,11 @@ package com.sbs.services;
 
 import com.sbs.models.*;
 import com.sbs.repositories.MatchRepository;
-import org.springframework.http.HttpStatus;
+import com.sbs.utils.Exceptions.MatchNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,9 +29,8 @@ public class MatchService {
         matchRepository.removeMatch(id);
     }
 
-    public Match findById(Long id) {
-        return matchRepository.findById(id)
-                .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+    public Optional<Match> findById(Long id) {
+        return matchRepository.findById(id);
     }
 
     public List<MatchDto> getMatches() {
@@ -43,7 +42,7 @@ public class MatchService {
 
     public Match setResult(Long id, MatchResult matchResult) {
         Match match = matchRepository.findById(id)
-                .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new MatchNotFoundException());
         match.setResult(matchResult);
         match.getOdds()
                 .forEach(bet -> {

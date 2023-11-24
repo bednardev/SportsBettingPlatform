@@ -19,8 +19,8 @@ public class OddsTennis implements Odds {
     @Override
     public List<Bet> getOdds(Match match) {
         return List.of(
-                new Bet(match.getName(), "1", homeTeamOdd, BetStatus.IN_PROGRESS),
-                new Bet(match.getName(), "2", awayTeamOdd, BetStatus.IN_PROGRESS)
+                new Bet(match.getName(), "1", homeTeamOdd, BetStatus.NOT_STARTED),
+                new Bet(match.getName(), "2", awayTeamOdd, BetStatus.NOT_STARTED)
 //                new Bet("1 over 8.5 aces", homeTeamAcesOdd),
 //                new Bet("2 over 8.5 aces", awayTeamAcesOdd)
         );
