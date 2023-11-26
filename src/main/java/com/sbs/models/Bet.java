@@ -4,8 +4,6 @@ package com.sbs.models;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.NumberFormat;
-
 @AllArgsConstructor
 @Getter
 @Setter

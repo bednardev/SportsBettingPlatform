@@ -15,9 +15,7 @@ import static com.sbs.models.MatchResult.NOT_STARTED;
 @Service
 public class CouponService {
     private final CouponRepository couponRepository;
-
     private final MatchRepository matchRepository;
-
     public CouponService(CouponRepository couponRepository, MatchRepository matchRepository) {
         this.couponRepository = couponRepository;
         this.matchRepository = matchRepository;
@@ -82,11 +80,14 @@ public class CouponService {
         Coupon coupon = couponRepository.findById(id)
                 .orElseThrow(CouponNotFoundException::new);
         if (IN_PROGRESS == coupon.getCouponStatus()) {
-            if (coupon.checkIfNotStarted()) {
+            if (coupon.checkIfNotStarted() && coupon.checkIfAssigned()) {
                 coupon.setCouponStatus(IN_PLAY);
                 couponRepository.sendCoupon(coupon);
-            } else {
+            } else if (coupon.checkIfAssigned()) {
                 throw new MatchInProgressException();
+            }
+            else {
+                throw new CouponNotAssignedException();
             }
             return Optional.of(coupon);
         }
@@ -104,7 +105,6 @@ public class CouponService {
             }
         }
     }
-
     public Optional<Coupon> findById(Long id) {
         return couponRepository.findById(id);
     }

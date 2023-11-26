@@ -16,6 +16,7 @@ public class Coupon {
     private Float stake;
     private Float winning;
     private CouponStatus couponStatus;
+    private Long userId;
 
     public boolean checkIfNotStarted() {
         return getCouponBets()
@@ -29,5 +30,9 @@ public class Coupon {
                 .values()
                 .stream()
                 .allMatch(bet -> BetStatus.WON.equals(bet.getBetStatus()));
+    }
+
+    public boolean checkIfAssigned() {
+        return null != getUserId();
     }
 }

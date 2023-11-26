@@ -32,6 +32,12 @@ public class ControllerExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(Map.of("Error", "status 404, match not found"));
     }
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleUserNotFoundException(UserNotFoundException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("Error", "status 404, user not found"));
+    }
 
     @ExceptionHandler(BetNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleBetNotFoundException(BetNotFoundException e) {
@@ -39,14 +45,24 @@ public class ControllerExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(Map.of("Error", "status 404, bet not found"));
     }
-
     @ExceptionHandler(MatchInProgressException.class)
     public ResponseEntity<Map<String, String>> handleMatchInProgressException(MatchInProgressException e) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(Map.of("Error", "status 404, the coupon does not contain only not started games"));
     }
-
+    @ExceptionHandler(CouponNotAssignedException.class)
+    public ResponseEntity<Map<String, String>> handleCouponNotAssignedException(CouponNotAssignedException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("Error", "status 404, the coupon has to be assigned before sending"));
+    }
+    @ExceptionHandler(NotEnoughFundsException.class)
+    public ResponseEntity<Map<String, String>> handleNotEnoughFundsException(NotEnoughFundsException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("Error", "status 404, user does not have enough funds"));
+    }
     @ExceptionHandler
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         return ResponseEntity
