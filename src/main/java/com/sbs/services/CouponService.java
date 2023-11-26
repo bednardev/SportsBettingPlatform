@@ -35,8 +35,9 @@ public class CouponService {
     public void removeCoupon(Long id) {
         couponRepository.removeCoupon(id);
     }
-
-
+    public Optional<Coupon> findById(Long id) {
+        return couponRepository.findById(id);
+    }
     public Optional<Coupon> addBet(Long couponId, Long matchId, String betName) {
         Coupon coupon = couponRepository.findById(couponId)
                 .orElseThrow(CouponNotFoundException::new);
@@ -80,6 +81,8 @@ public class CouponService {
         throw new CouponInPlayException();
     }
 
+
+    //to be replaced by EventListener:
     public void settleCoupon(Long id) {
         Coupon coupon = couponRepository.findById(id)
                 .orElseThrow(CouponNotFoundException::new);
@@ -90,9 +93,5 @@ public class CouponService {
                 coupon.setCouponStatus(LOST);
             }
         }
-    }
-
-    public Optional<Coupon> findById(Long id) {
-        return couponRepository.findById(id);
     }
 }

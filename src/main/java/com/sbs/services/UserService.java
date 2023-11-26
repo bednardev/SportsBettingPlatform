@@ -83,4 +83,14 @@ public class UserService {
             throw new CouponInPlayException();
     }
 
+    //to be replaced by EventListener:
+    public void addWinToBalance(Long id, Long couponId) {
+        User user = userRepository.findById(id)
+                .orElseThrow(UserNotFoundException::new);
+        Coupon coupon = user.findUserCouponByCouponId(couponId)
+                .orElseThrow(CouponNotFoundException::new);
+        if (coupon.checkIfWon()){
+            user.setBalance(user.getBalance() + coupon.getWinning());
+        }
+    }
 }

@@ -57,4 +57,9 @@ public class UserController {
     public Optional<Coupon> sendCoupon(@PathVariable Long id, @PathVariable Long couponId) {
         return userService.sendCoupon(id, couponId);
     }
+    //to be replaced by EventListener:
+    @PatchMapping(value = "/{id}/{couponId}", params = "bank")
+    public void addWinToBalance(@PathVariable Long id, @PathVariable Long couponId) {
+        userService.addWinToBalance(id,couponId);
+    }
 }
