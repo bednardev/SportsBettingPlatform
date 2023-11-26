@@ -2,9 +2,7 @@ package com.sbs.controllers;
 
 import com.sbs.models.Coupon;
 import com.sbs.services.CouponService;
-import com.sbs.utils.Exceptions.BetNotFoundException;
 import com.sbs.utils.Exceptions.CouponNotFoundException;
-import com.sbs.utils.Exceptions.MatchNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +22,11 @@ public class CouponController {
         return couponService.addCoupon(coupon);
     }
 
+    @DeleteMapping("{id}")
+    public void removeCoupon(@PathVariable Long id) {
+        couponService.removeCoupon(id);
+    }
+
     @GetMapping
     public List<Coupon> getCoupons() {
         return couponService.getCoupons();
@@ -32,7 +35,7 @@ public class CouponController {
     @GetMapping("/{id}")
     public Coupon findById(@PathVariable Long id) {
         return couponService.findById(id)
-                .orElseThrow(() -> new CouponNotFoundException());
+                .orElseThrow(CouponNotFoundException::new);
     }
 
     @PatchMapping(value = "/{couponId}/{matchId}/{betName}", params = "add")

@@ -33,6 +33,10 @@ public class CouponService {
         return couponRepository.getCoupons();
     }
 
+    public void removeCoupon(Long id) {
+        couponRepository.removeCoupon(id);
+    }
+
 
     public Optional<Coupon> addBet(Long couponId, Long matchId, String betName) {
         Coupon coupon = couponRepository.findById(couponId)

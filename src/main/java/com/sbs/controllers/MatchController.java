@@ -27,7 +27,7 @@ public class MatchController {
     @GetMapping("/{id}")
     public Match findById(@PathVariable Long id) {
         return matchService.findById(id)
-                .orElseThrow(() -> new MatchNotFoundException());
+                .orElseThrow(MatchNotFoundException::new);
     }
 
     @PostMapping
