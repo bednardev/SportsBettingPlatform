@@ -4,16 +4,33 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Getter
 @Setter
 public class Coupon {
-    public Coupon(){}
+    public Coupon() {
+    }
+
     private Long id;
     private Map<Long, Bet> couponBets = new LinkedHashMap<>();
     private Float totalCourse;
     private Float stake;
     private Float winning;
     private CouponStatus couponStatus;
+
+    public boolean checkIfNotStarted() {
+        return getCouponBets()
+                .values()
+                .stream()
+                .allMatch(bet -> BetStatus.NOT_STARTED.equals(bet.getBetStatus()));
+    }
+
+    public boolean checkIfWon() {
+        return getCouponBets()
+                .values()
+                .stream()
+                .allMatch(bet -> BetStatus.WON.equals(bet.getBetStatus()));
+    }
 }

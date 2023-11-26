@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -37,5 +38,22 @@ public class Match {
         this.homeChanceCoefficient = homeChanceCoefficient;
         this.result = MatchResult.NOT_STARTED;
         this.odds = odds;
+    }
+
+    public Optional<Bet> findBetByName(String betName) {
+        return getOdds()
+                .stream()
+                .filter(b -> b.getName().equals(betName))
+                .findFirst();
+    }
+
+    public void settleBetStatus(MatchResult matchResult) {
+        getOdds().forEach(bet -> {
+                    if (bet.getName().equals(matchResult.getScore())) {
+                        bet.setBetStatus(BetStatus.WON);
+                    } else {
+                        bet.setBetStatus(BetStatus.LOST);
+                    }
+                });
     }
 }

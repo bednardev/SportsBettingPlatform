@@ -36,15 +36,12 @@ public class CouponService {
 
     public Optional<Coupon> addBet(Long couponId, Long matchId, String betName) {
         Coupon coupon = couponRepository.findById(couponId)
-                .orElseThrow(() -> new CouponNotFoundException());
+                .orElseThrow(CouponNotFoundException::new);
         Match match = matchRepository.findById(matchId)
-                .orElseThrow(() -> new MatchNotFoundException());
+                .orElseThrow(MatchNotFoundException::new);
         if (IN_PROGRESS == coupon.getCouponStatus() && NOT_STARTED == match.getResult()) {
-            Bet bet = match.getOdds()
-                    .stream()
-                    .filter(b -> b.getName().equals(betName))
-                    .findFirst()
-                    .orElseThrow((() -> new BetNotFoundException()));
+            Bet bet = match.findBetByName(betName)
+                    .orElseThrow((BetNotFoundException::new));
             couponRepository.addBet(coupon, bet, matchId);
             coupon.setTotalCourse(coupon.getTotalCourse() * bet.getCourse());
             return Optional.of(coupon);
@@ -54,7 +51,7 @@ public class CouponService {
 
     public Optional<Coupon> removeBet(Long couponId, Long matchId) {
         Coupon coupon = couponRepository.findById(couponId)
-                .orElseThrow(() -> new CouponNotFoundException());
+                .orElseThrow(CouponNotFoundException::new);
         if (IN_PROGRESS == coupon.getCouponStatus()) {
             Float betCourse = coupon.getCouponBets()
                     .get(matchId)
@@ -68,7 +65,7 @@ public class CouponService {
 
     public Optional<Coupon> setStake(Float stake, Long id) {
         Coupon coupon = couponRepository.findById(id)
-                .orElseThrow(() -> new CouponNotFoundException());
+                .orElseThrow(CouponNotFoundException::new);
         if (IN_PROGRESS == coupon.getCouponStatus()) {
             coupon.setStake(stake);
             coupon.setWinning(stake * coupon.getTotalCourse());
@@ -79,12 +76,9 @@ public class CouponService {
 
     public Optional<Coupon> sendCoupon(Long id) {
         Coupon coupon = couponRepository.findById(id)
-                .orElseThrow(() -> new CouponNotFoundException());
+                .orElseThrow(CouponNotFoundException::new);
         if (IN_PROGRESS == coupon.getCouponStatus()) {
-            if (coupon.getCouponBets()
-                    .values()
-                    .stream()
-                    .allMatch(bet -> BetStatus.NOT_STARTED.equals(bet.getBetStatus()))) {
+            if (coupon.checkIfNotStarted()) {
                 coupon.setCouponStatus(IN_PLAY);
                 couponRepository.sendCoupon(coupon);
             } else {
@@ -97,12 +91,9 @@ public class CouponService {
 
     public void settleCoupon(Long id) {
         Coupon coupon = couponRepository.findById(id)
-                .orElseThrow(() -> new CouponNotFoundException());
+                .orElseThrow(CouponNotFoundException::new);
         if (IN_PLAY == coupon.getCouponStatus()) {
-            if (coupon.getCouponBets()
-                    .values()
-                    .stream()
-                    .allMatch(bet -> BetStatus.WON.equals(bet.getBetStatus()))) {
+            if (coupon.checkIfWon()) {
                 coupon.setCouponStatus(WON);
             } else {
                 coupon.setCouponStatus(LOST);

@@ -42,16 +42,9 @@ public class MatchService {
 
     public Match setResult(Long id, MatchResult matchResult) {
         Match match = matchRepository.findById(id)
-                .orElseThrow(() -> new MatchNotFoundException());
+                .orElseThrow(MatchNotFoundException::new);
         match.setResult(matchResult);
-        match.getOdds()
-                .forEach(bet -> {
-                    if (bet.getName().equals(matchResult.getScore())) {
-                        bet.setBetStatus(BetStatus.WON);
-                    } else {
-                        bet.setBetStatus(BetStatus.LOST);
-                    }
-                });
+        match.settleBetStatus(matchResult);
         return match;
     }
 }
