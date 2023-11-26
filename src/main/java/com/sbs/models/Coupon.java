@@ -2,6 +2,7 @@ package com.sbs.models;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.*;
 
 @Getter
@@ -18,7 +19,7 @@ public class Coupon {
     private CouponStatus couponStatus;
     private Long userId;
 
-    public boolean checkIfNotStarted() {
+    public boolean checkIfMatchNotStarted() {
         return getCouponBets()
                 .values()
                 .stream()
@@ -30,9 +31,5 @@ public class Coupon {
                 .values()
                 .stream()
                 .allMatch(bet -> BetStatus.WON.equals(bet.getBetStatus()));
-    }
-
-    public boolean checkIfAssigned() {
-        return null != getUserId();
     }
 }

@@ -54,11 +54,6 @@ public class CouponController {
         return couponService.setStake(stake, id);
     }
 
-    @PatchMapping(value = "/{id}", params = "send")
-    public Optional<Coupon> sendCoupon(@PathVariable Long id) {
-        return couponService.sendCoupon(id);
-    }
-
     // to be replaced by EventListener:
     @PatchMapping(value = "/{id}", params = "settle")
     public void settleCoupon(@PathVariable Long id) {

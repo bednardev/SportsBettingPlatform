@@ -16,6 +16,7 @@ import static com.sbs.models.MatchResult.NOT_STARTED;
 public class CouponService {
     private final CouponRepository couponRepository;
     private final MatchRepository matchRepository;
+
     public CouponService(CouponRepository couponRepository, MatchRepository matchRepository) {
         this.couponRepository = couponRepository;
         this.matchRepository = matchRepository;
@@ -47,11 +48,9 @@ public class CouponService {
             couponRepository.addBet(coupon, bet, matchId);
             coupon.setTotalCourse(coupon.getTotalCourse() * bet.getCourse());
             return Optional.of(coupon);
-        }
-        else if (IN_PROGRESS == coupon.getCouponStatus()) {
+        } else if (IN_PROGRESS == coupon.getCouponStatus()) {
             throw new MatchInProgressException();
-        }
-        else {
+        } else {
             throw new CouponInPlayException();
         }
     }
@@ -81,24 +80,6 @@ public class CouponService {
         throw new CouponInPlayException();
     }
 
-    public Optional<Coupon> sendCoupon(Long id) {
-        Coupon coupon = couponRepository.findById(id)
-                .orElseThrow(CouponNotFoundException::new);
-        if (IN_PROGRESS == coupon.getCouponStatus()) {
-            if (coupon.checkIfNotStarted() && coupon.checkIfAssigned()) {
-                coupon.setCouponStatus(IN_PLAY);
-                couponRepository.sendCoupon(coupon);
-            } else if (coupon.checkIfAssigned()) {
-                throw new MatchInProgressException();
-            }
-            else {
-                throw new CouponNotAssignedException();
-            }
-            return Optional.of(coupon);
-        }
-        throw new CouponInPlayException();
-    }
-
     public void settleCoupon(Long id) {
         Coupon coupon = couponRepository.findById(id)
                 .orElseThrow(CouponNotFoundException::new);
@@ -110,6 +91,7 @@ public class CouponService {
             }
         }
     }
+
     public Optional<Coupon> findById(Long id) {
         return couponRepository.findById(id);
     }

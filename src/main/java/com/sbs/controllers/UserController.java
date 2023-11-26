@@ -7,6 +7,7 @@ import com.sbs.utils.Exceptions.UserNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -51,5 +52,9 @@ public class UserController {
     @PatchMapping(value = "/{id}/{couponId}", params = "assign")
     public Coupon takeCoupon(@PathVariable Long id, @PathVariable Long couponId) {
         return userService.takeCoupon(id, couponId);
+    }
+    @PatchMapping(value = "/{id}/{couponId}", params = "send")
+    public Optional<Coupon> sendCoupon(@PathVariable Long id, @PathVariable Long couponId) {
+        return userService.sendCoupon(id, couponId);
     }
 }

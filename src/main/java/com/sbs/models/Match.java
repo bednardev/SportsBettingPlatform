@@ -43,7 +43,7 @@ public class Match {
     public Optional<Bet> findBetByName(String betName) {
         return getOdds()
                 .stream()
-                .filter(b -> b.getName().equals(betName))
+                .filter(b -> betName.equals(b.getName()))
                 .findFirst();
     }
 

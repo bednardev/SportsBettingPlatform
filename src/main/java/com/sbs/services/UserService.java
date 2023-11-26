@@ -4,13 +4,14 @@ import com.sbs.models.Coupon;
 import com.sbs.models.User;
 import com.sbs.repositories.CouponRepository;
 import com.sbs.repositories.UserRepository;
-import com.sbs.utils.Exceptions.CouponNotFoundException;
-import com.sbs.utils.Exceptions.NotEnoughFundsException;
-import com.sbs.utils.Exceptions.UserNotFoundException;
+import com.sbs.utils.Exceptions.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.sbs.models.CouponStatus.IN_PLAY;
+import static com.sbs.models.CouponStatus.IN_PROGRESS;
 
 @Service
 public class UserService {
@@ -58,6 +59,28 @@ public class UserService {
         coupon.setUserId(user.getId());
         user.getCoupons().add(coupon);
         return coupon;
+    }
+
+    public Optional<Coupon> sendCoupon(Long id, Long couponId) {
+        User user = userRepository.findById(id)
+                .orElseThrow(UserNotFoundException::new);
+        Coupon coupon = user.findUserCouponByCouponId(couponId)
+                .orElseThrow(CouponNotFoundException::new);
+        if (IN_PROGRESS == coupon.getCouponStatus() && user.getBalance() >= coupon.getStake()){
+            if (coupon.checkIfMatchNotStarted()) {
+                user.setBalance(user.getBalance() - coupon.getStake());
+                coupon.setCouponStatus(IN_PLAY);
+                couponRepository.sendCoupon(coupon);
+            }
+            else {
+                throw new MatchInProgressException();
+            }
+            return Optional.of(coupon);
+        }
+        else if (IN_PROGRESS == coupon.getCouponStatus()) {
+            throw new NotEnoughFundsException();
+        }
+            throw new CouponInPlayException();
     }
 
 }
