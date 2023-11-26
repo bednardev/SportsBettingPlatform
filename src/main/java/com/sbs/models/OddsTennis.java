@@ -13,16 +13,11 @@ public class OddsTennis implements Odds {
     private float awayTeamOdd;
     //odd that away team/player will win
 
-//    private float homeTeamAcesOdd; //odd that home player will have over 8.5 service aces in a game
-//    private float awayTeamAcesOdd; //odd that away player will have over 8.5 service aces in a game
-
     @Override
     public List<Bet> getOdds(Match match) {
         return List.of(
                 new Bet(match.getName(), "1", homeTeamOdd, BetStatus.NOT_STARTED),
                 new Bet(match.getName(), "2", awayTeamOdd, BetStatus.NOT_STARTED)
-//                new Bet("1 over 8.5 aces", homeTeamAcesOdd),
-//                new Bet("2 over 8.5 aces", awayTeamAcesOdd)
         );
     }
 

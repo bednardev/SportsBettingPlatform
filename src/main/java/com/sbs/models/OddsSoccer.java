@@ -14,18 +14,12 @@ public class OddsSoccer implements Odds {
     //odd that away team/player will win, 0.3 chance is always reserved for a draw
     private float drawOdd;
     //odd that there will be a draw
-
-//    private float homeTeamCornersOdd; //odd that home team will have over 5.5 corner kicks in a game
-//    private float awayTeamCornersOdd; //odd that home team will have over 5.5 corner kicks in a game
-
     @Override
     public List<Bet> getOdds(Match match) {
         return List.of(
                 new Bet(match.getName(), "1", homeTeamOdd, BetStatus.NOT_STARTED),
                 new Bet(match.getName(), "X", drawOdd, BetStatus.NOT_STARTED),
                 new Bet(match.getName(), "2", awayTeamOdd, BetStatus.NOT_STARTED)
-//                new Bet("1 over 5.5 corners", homeTeamCornersOdd),
-//                new Bet("2 over 5.5 corners", awayTeamCornersOdd)
         );
     }
 

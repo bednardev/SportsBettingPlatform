@@ -48,7 +48,12 @@ public class CouponService {
             coupon.setTotalCourse(coupon.getTotalCourse() * bet.getCourse());
             return Optional.of(coupon);
         }
-        throw new CouponInPlayException();
+        else if (IN_PROGRESS == coupon.getCouponStatus()) {
+            throw new MatchInProgressException();
+        }
+        else {
+            throw new CouponInPlayException();
+        }
     }
 
     public Optional<Coupon> removeBet(Long couponId, Long matchId) {
