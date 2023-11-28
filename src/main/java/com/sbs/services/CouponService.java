@@ -23,7 +23,6 @@ public class CouponService {
     }
 
     public Coupon addCoupon(Coupon coupon) {
-        coupon.setTotalCourse(1F);
         coupon.setCouponStatus(CouponStatus.IN_PROGRESS);
         return couponRepository.addCoupon(coupon);
     }

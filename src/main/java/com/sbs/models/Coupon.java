@@ -8,12 +8,10 @@ import java.util.*;
 @Getter
 @Setter
 public class Coupon {
-    public Coupon() {
-    }
 
     private Long id;
     private Map<Long, Bet> couponBets = new LinkedHashMap<>();
-    private Float totalCourse;
+    private Float totalCourse = 1F;
     private Float stake;
     private Float winning;
     private CouponStatus couponStatus;
