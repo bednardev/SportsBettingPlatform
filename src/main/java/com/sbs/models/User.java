@@ -1,7 +1,9 @@
 package com.sbs.models;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.LinkedList;
@@ -10,10 +12,15 @@ import java.util.Optional;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
     private String login;
     private Float balance;
+    @OneToMany(mappedBy = "id")
     private List<Coupon> coupons = new LinkedList<>();
     public User(String login){
         this.login = login;
