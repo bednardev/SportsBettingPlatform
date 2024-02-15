@@ -17,7 +17,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class Bet {
     @Id
     @Column(name = "ID")
-    private Long id;
+    private Long betId;
     private String matchName;
     private String name;
     private Float course;

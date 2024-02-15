@@ -35,7 +35,7 @@ public class Match {
     /*a chance for winning for home Team, should be provided after game analysis. Away team chance is calculated
      then based on provided home chance (for soccer, a draw chance has fixed value 0.30)*/
     private MatchResult result;
-    @OneToMany
+    @OneToMany(mappedBy = "betId")
     private List<Bet> odds;
 
     public Match(Discipline discipline, String homeTeam, String awayTeam, Instant date, Float homeChanceCoefficient, List<Bet> odds) {

@@ -1,9 +1,6 @@
 package com.sbs.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +20,7 @@ public class User {
     private Long id;
     private String login;
     private Float balance;
+    @OneToMany(mappedBy = "id")
     private List<Coupon> coupons = new LinkedList<>();
     public User(String login){
         this.login = login;
