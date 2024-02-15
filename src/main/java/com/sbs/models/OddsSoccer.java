@@ -17,9 +17,9 @@ public class OddsSoccer implements Odds {
     @Override
     public List<Bet> getOdds(Match match) {
         return List.of(
-                new Bet(match.getName(), "1", homeTeamOdd, BetStatus.NOT_STARTED),
-                new Bet(match.getName(), "X", drawOdd, BetStatus.NOT_STARTED),
-                new Bet(match.getName(), "2", awayTeamOdd, BetStatus.NOT_STARTED)
+                new Bet(0L,match.getName(), "1", homeTeamOdd, BetStatus.NOT_STARTED),
+                new Bet(1L,match.getName(), "X", drawOdd, BetStatus.NOT_STARTED),
+                new Bet(2L, match.getName(), "2", awayTeamOdd, BetStatus.NOT_STARTED)
         );
     }
 
